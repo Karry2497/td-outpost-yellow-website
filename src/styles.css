@@ -68,3 +68,59 @@
     repeating-linear-gradient(115deg, transparent 0 38px, var(--background) 38px 58px, transparent 58px 96px),
     repeating-linear-gradient(65deg, transparent 0 70px, var(--background) 70px 82px, transparent 82px 150px);
 }
+
+/* --- Baggrund: ren CSS/SVG. Ingen billeder fra spillet. --- */
+
+@utility city-night {
+  background-color: var(--background);
+  background-image:
+    radial-gradient(ellipse 70% 45% at 50% 104%, oklch(0.84 0.17 88 / 0.3), transparent 72%),
+    radial-gradient(circle 280px at 84% 14%, oklch(0.84 0.17 88 / 0.18), transparent 70%),
+    linear-gradient(to bottom, oklch(0.11 0.012 235) 0%, oklch(0.16 0.012 230) 58%, oklch(0.21 0.014 230) 100%);
+}
+
+@utility street-grid {
+  background-image:
+    repeating-linear-gradient(90deg, oklch(0.84 0.17 88 / 0.16) 0 1px, transparent 1px 96px),
+    repeating-linear-gradient(0deg, oklch(0.84 0.17 88 / 0.12) 0 1px, transparent 1px 64px);
+  background-position: 0 0, 0 0;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 60%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 60%);
+  animation: street-crawl 16s linear infinite;
+}
+
+@keyframes street-crawl {
+  to {
+    background-position: 0 0, 0 64px;
+  }
+}
+
+@utility halftone {
+  background-image: radial-gradient(oklch(0.84 0.17 88 / 0.12) 1.4px, transparent 1.5px);
+  background-size: 20px 20px;
+}
+
+@utility scanlines {
+  background-image: repeating-linear-gradient(to bottom, oklch(0 0 0 / 0.28) 0 1px, transparent 1px 4px);
+}
+
+@utility haze-pulse {
+  animation: haze-pulse 7s ease-in-out infinite;
+}
+
+@keyframes haze-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .street-grid,
+  .haze-pulse {
+    animation: none;
+  }
+}

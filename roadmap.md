@@ -1,3 +1,5 @@
 - [x] Forside i Ospuze-stil (sort/gul, tigerstriber)
 - [x] Navn: Yellow Outpost
 - [x] Responsiv på mobil og desktop
+- [x] CSS/SVG-baggrund (ingen spil-billeder) + tomme billedpladser
+- [ ] Karry indsætter egne billeder fra spillet i pladserne
