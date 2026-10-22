@@ -1,0 +1,3 @@
+- [x] Forside i Ospuze-stil (sort/gul, tigerstriber)
+- [ ] Navn: Yellow Outpost
+- [ ] Responsiv på mobil og desktop
