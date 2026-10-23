@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import logoAsset from "@/assets/outpost-yellow-logo.png.asset.json";
 import heroAsset from "@/assets/outpost-billboard.webp.asset.json";
 import heroMobileAsset from "@/assets/outpost-billboard-mobile.webp.asset.json";
-import screen1 from "@/assets/screen-image-4.webp.asset.json";
-import screen2 from "@/assets/screen-image-5.webp.asset.json";
-import screen3 from "@/assets/screen-image-6.webp.asset.json";
+import screen1 from "@/assets/outpost-from-above.png";
+import screen2 from "@/assets/rooftop-turret.png";
+import screen3 from "@/assets/main-menu.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -50,9 +50,9 @@ const features = [
    --------------------------------------------------------------------------- */
 
 const slots = [
-  { t: "The outpost from above", d: "A bird's-eye view of all three roads into town.", img: screen1.url },
-  { t: "Rooftop turret", d: "Set your defenses before the horde closes in.", img: screen2.url },
-  { t: "Wave 5", d: "The chopper is coming in. Keep the landing zone clear.", img: screen3.url },
+  { t: "The outpost from above", d: "A bird's-eye view of all three roads into town.", img: screen1 },
+  { t: "Rooftop turret", d: "Set your defenses before the horde closes in.", img: screen2 },
+  { t: "Main menu", d: "Five waves. One last outpost. See what stands between you and extraction.", img: screen3 },
 ];
 
 function Slot({ title, hint, img }: { title: string; hint: string; img: string }) {
