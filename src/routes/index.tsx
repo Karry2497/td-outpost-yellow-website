@@ -139,12 +139,14 @@ function Index() {
 
       <section className="extraction-band relative border-y px-6 py-16 md:px-12 md:py-24">
         <div className="relative mx-auto max-w-3xl text-center">
-          <p className="field-label mb-5 text-xs uppercase text-primary">Final order / Hold the line</p>
+          <p className="field-label mb-5 text-xs uppercase text-primary">Latest release / v0.1.0</p>
           <p className="font-display text-7xl text-primary md:text-8xl">5</p>
-          <h2 className="mt-2 font-heavy text-2xl uppercase sm:text-3xl md:text-5xl">5 waves to extraction<Dot /></h2>
-          <p className="mt-4 text-muted-foreground">Keep the outpost breathing. Hold for the chopper.</p>
+          <h2 className="mt-2 font-heavy text-2xl uppercase sm:text-3xl md:text-5xl">Five waves. One way out<Dot /></h2>
+          <p className="mt-4 text-muted-foreground">v0.1.0 is live. Build fast, hold the line, and get to the chopper.</p>
           <Button asChild size="lg" className="hazard-button mt-8 rounded-sm font-heavy uppercase">
-            <a href="#spil">Get the rundown <ArrowUpRight /></a>
+            <a href="https://github.com/Karry2497/td-outpost-yellow/releases/tag/v0.1.0" target="_blank" rel="noreferrer">
+              Download v0.1.0 <ArrowUpRight />
+            </a>
           </Button>
         </div>
       </section>
