@@ -11,16 +11,16 @@ import screen3 from "@/assets/screen-image-6.webp.asset.json";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "TD: Outpost Yellow – Byg. Stop. Overlev." },
+      { title: "TD: Outpost Yellow – Build. Stop. Survive." },
       {
         name: "description",
         content:
-          "Tower defense extraction: forsvar den sidste outpost mod gule zombier i fem bølger, til helikopteren kommer.",
+          "Tower defense meets extraction. Defend the last outpost from the yellow horde for five waves. Then make it to the chopper.",
       },
-      { property: "og:title", content: "TD: Outpost Yellow – Byg. Stop. Overlev." },
+      { property: "og:title", content: "TD: Outpost Yellow – Build. Stop. Survive." },
       {
         property: "og:description",
-        content: "Forsvar outposten mod de gule zombier, og vent på helikopteren.",
+        content: "Hold the outpost against the yellow horde. Survive five waves. Get to the chopper.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -35,24 +35,24 @@ const features = [
   {
     n: "01",
     icon: Crosshair,
-    t: "Tårne på tagene",
-    d: "Placér tårne på bygningernes tage og dæk alle tre veje ind i byen.",
+    t: "Towers on the rooftops",
+    d: "Drop turrets on the rooftops. Cover all three roads into town.",
   },
-  { n: "02", icon: Shield, t: "Bots & pigtråd", d: "Køb forsvarsbots og pigtråd, der bremser horden før den når murene." },
-  { n: "03", icon: Wrench, t: "Reparér & forstærk", d: "Lap outposten sammen og forstærk murene mellem bølgerne." },
-  { n: "04", icon: Plane, t: "Luftangreb", d: "Når presset bliver for stort: kald et luftangreb ned over vejene." },
+  { n: "02", icon: Shield, t: "Bots & barbed wire", d: "Buy defense bots and string up barbed wire. Slow the horde before it hits the walls." },
+  { n: "03", icon: Wrench, t: "Patch & fortify", d: "Patch up the outpost. Reinforce the walls between waves." },
+  { n: "04", icon: Plane, t: "Airstrikes", d: "Getting overrun? Call in an airstrike and light up the roads." },
 ];
 
 /* ---------------------------------------------------------------------------
-   Billedpladser: tomme rammer, du fylder med dine egne billeder senere.
-   Læg fx dine filer i src/assets/ og udskift <Slot /> med:
-   <img src={mitBillede} alt="..." className="h-full w-full object-cover" />
+   Image slots: empty frames for your own screenshots.
+   Add files to src/assets/ and replace <Slot /> with:
+   <img src={myImage} alt="..." className="h-full w-full object-cover" />
    --------------------------------------------------------------------------- */
 
 const slots = [
-  { t: "Outposten fra luften", d: "Overblik over de tre veje ind i byen.", img: screen1.url },
-  { t: "Tårn på taget", d: "Placering af tårn, mens horden nærmer sig.", img: screen2.url },
-  { t: "Bølge 5", d: "Helikopteren er på vej ind over outposten.", img: screen3.url },
+  { t: "The outpost from above", d: "A bird's-eye view of all three roads into town.", img: screen1.url },
+  { t: "Rooftop turret", d: "Set your defenses before the horde closes in.", img: screen2.url },
+  { t: "Wave 5", d: "The chopper is coming in. Keep the landing zone clear.", img: screen3.url },
 ];
 
 function Slot({ title, hint, img }: { title: string; hint: string; img: string }) {
@@ -73,7 +73,7 @@ function Index() {
       <header className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-6 py-4 md:px-12">
         <Logo />
         <Button asChild className="hazard-button shrink-0 rounded-sm px-4 font-heavy text-xs uppercase sm:px-5 sm:text-sm">
-          <a href="#spil">Ønskeliste <ArrowUpRight /></a>
+          <a href="#spil">The game <ArrowUpRight /></a>
         </Button>
       </header>
 
@@ -93,11 +93,11 @@ function Index() {
           <p className="field-label mb-2 text-xs uppercase text-primary">Tower defense / Extraction</p>
           <h1 className="sr-only">TD: Outpost Yellow</h1>
           <p className="max-w-xl text-base text-foreground/85 sm:text-lg">
-            Den sidste outpost står alene mod de gule zombier. Overlev fem bølger, så helikopteren kan hente de
-            overlevende ud.
+            The last outpost is all that stands between the yellow horde and everyone left alive. Survive five waves
+            and get the survivors out before the chopper leaves without you.
           </p>
           <Button asChild variant="outline" className="mt-7 rounded-sm border-primary/50 bg-background/70 font-heavy uppercase text-primary">
-            <a href="#spil">Ind i outposten <ArrowDown /></a>
+            <a href="#spil">Drop into the outpost <ArrowDown /></a>
           </Button>
         </div>
       </section>
@@ -105,13 +105,13 @@ function Index() {
       <div className="tiger h-3 w-full border-y border-primary/50" aria-hidden />
 
       <section id="spil" className="field-section scroll-mt-6 px-6 py-16 md:px-12 md:py-24">
-        <p className="field-label uppercase text-primary">01 / Forsvar den sidste outpost</p>
+        <p className="field-label uppercase text-primary">01 / Defend the last outpost</p>
         <h2 className="mt-3 max-w-4xl font-heavy text-3xl uppercase leading-tight sm:text-4xl md:text-6xl">
           No brains<Dot /> No problem<Dot />
         </h2>
         <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          Fra et fast kamera højt over byen ser du slagmarken og bygger dit forsvar, mens horden nærmer sig gennem
-          byens tre veje. Brug dine kreditter klogt.
+          Keep an eye on the whole battlefield from high above. Build your defenses as the horde pushes down all
+          three roads. Spend your credits wisely. The dead don’t wait for change.
         </p>
 
         <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -126,9 +126,9 @@ function Index() {
       </section>
 
       <section className="field-section border-t px-6 py-16 md:px-12 md:py-24">
-        <p className="field-label uppercase text-primary">02 / Fra outposten</p>
+        <p className="field-label uppercase text-primary">02 / From the outpost</p>
         <h2 className="mt-3 max-w-3xl font-heavy text-3xl uppercase leading-tight sm:text-4xl md:text-5xl">
-          Udsigt fra frontlinjen<Dot />
+          Frontline snapshots<Dot />
         </h2>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {slots.map((s) => (
@@ -139,12 +139,12 @@ function Index() {
 
       <section className="extraction-band relative border-y px-6 py-16 md:px-12 md:py-24">
         <div className="relative mx-auto max-w-3xl text-center">
-          <p className="field-label mb-5 text-xs uppercase text-primary">Sidste ordre / Hold linjen</p>
+          <p className="field-label mb-5 text-xs uppercase text-primary">Final order / Hold the line</p>
           <p className="font-display text-7xl text-primary md:text-8xl">5</p>
-          <h2 className="mt-2 font-heavy text-2xl uppercase sm:text-3xl md:text-5xl">Bølger til udtræk<Dot /></h2>
-          <p className="mt-4 text-muted-foreground">Hold outposten i live. Vent på helikopteren.</p>
+          <h2 className="mt-2 font-heavy text-2xl uppercase sm:text-3xl md:text-5xl">5 waves to extraction<Dot /></h2>
+          <p className="mt-4 text-muted-foreground">Keep the outpost breathing. Hold for the chopper.</p>
           <Button asChild size="lg" className="hazard-button mt-8 rounded-sm font-heavy uppercase">
-            <a href="#spil">Følg udviklingen <ArrowUpRight /></a>
+            <a href="#spil">Get the rundown <ArrowUpRight /></a>
           </Button>
         </div>
       </section>
@@ -157,9 +157,9 @@ function Index() {
           </div>
         </div>
         <p className="mt-8 text-[10px] leading-snug text-muted-foreground">
-          TD: Outpost Yellow™ indeholder op til 100% gule zombier. Ingen overlevende blev efterladt under udviklingen.
-          Bivirkninger kan omfatte forhøjet puls, pludselig trang til at bygge pigtråd og ukontrolleret råb efter
-          luftangreb. Lad være med at drille horden.
+          TD: Outpost Yellow™ may contain up to 100% yellow zombies. No survivors were left behind during development.
+          Side effects may include a racing pulse, a sudden urge to build barbed wire, and yelling “airstrike!” at
+          wildly inappropriate times. Don’t poke the horde.
         </p>
       </footer>
     </main>
@@ -168,7 +168,7 @@ function Index() {
 
 function Logo() {
   return (
-    <a href="#" aria-label="TD: Outpost Yellow – forsiden" className="block w-24 shrink-0 sm:w-32">
+    <a href="#" aria-label="TD: Outpost Yellow – home" className="block w-24 shrink-0 sm:w-32">
       <img src={logoAsset.url} alt="TD: Outpost Yellow" width={1152} height={768} className="h-auto w-full mix-blend-screen" />
     </a>
   );
