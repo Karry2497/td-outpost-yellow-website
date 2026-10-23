@@ -1,15 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ArrowDown, ArrowUpRight, Crosshair, Shield, Wrench, Plane, ImagePlus } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import logoAsset from "@/assets/outpost-yellow-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Yellow Outpost – Byg. Stop. Overlev." },
+      { title: "TD: Outpost Yellow – Byg. Stop. Overlev." },
       {
         name: "description",
         content:
           "Tower defense extraction: forsvar den sidste outpost mod gule zombier i fem bølger, til helikopteren kommer.",
       },
-      { property: "og:title", content: "Yellow Outpost – Byg. Stop. Overlev." },
+      { property: "og:title", content: "TD: Outpost Yellow – Byg. Stop. Overlev." },
       {
         property: "og:description",
         content: "Forsvar outposten mod de gule zombier, og vent på helikopteren.",
@@ -26,12 +29,13 @@ const Dot = () => <span className="text-primary">.</span>;
 const features = [
   {
     n: "01",
+    icon: Crosshair,
     t: "Tårne på tagene",
     d: "Placér tårne på bygningernes tage og dæk alle tre veje ind i byen.",
   },
-  { n: "02", t: "Bots & pigtråd", d: "Køb forsvarsbots og pigtråd, der bremser horden før den når murene." },
-  { n: "03", t: "Reparér & forstærk", d: "Lap outposten sammen og forstærk murene mellem bølgerne." },
-  { n: "04", t: "Luftangreb", d: "Når presset bliver for stort: kald et luftangreb ned over vejene." },
+  { n: "02", icon: Shield, t: "Bots & pigtråd", d: "Køb forsvarsbots og pigtråd, der bremser horden før den når murene." },
+  { n: "03", icon: Wrench, t: "Reparér & forstærk", d: "Lap outposten sammen og forstærk murene mellem bølgerne." },
+  { n: "04", icon: Plane, t: "Luftangreb", d: "Når presset bliver for stort: kald et luftangreb ned over vejene." },
 ];
 
 /* ---------------------------------------------------------------------------
@@ -119,11 +123,10 @@ function Backdrop() {
   return (
     <div className="absolute inset-0 overflow-hidden" aria-hidden>
       <div className="city-night absolute inset-0" />
-      <div className="tiger absolute inset-0 opacity-[0.10]" />
-      <div className="haze-pulse absolute right-[10%] top-[12%] h-28 w-28 rounded-full bg-primary sm:h-40 sm:w-40" />
-      <div className="absolute inset-0" style={{ background: "var(--glow)" }} />
+      <div className="metal-grain absolute inset-0" />
+      <div className="tiger absolute inset-y-0 right-0 w-3 opacity-50 md:w-5" />
       <div className="street-grid absolute inset-x-0 bottom-0 h-1/2" />
-      <div className="halftone haze-pulse absolute inset-0" />
+      <div className="halftone absolute inset-0 opacity-30" />
       <Skyline />
       <div className="scanlines absolute inset-0 opacity-30" />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/55 to-background/10" />
@@ -145,11 +148,9 @@ const slots = [
 
 function Slot({ title, hint }: { title: string; hint: string }) {
   return (
-    <figure className="overflow-hidden rounded-xl border bg-card">
-      <div className="flex aspect-video w-full flex-col items-center justify-center gap-3 border-b border-dashed px-4 text-center">
-        <svg viewBox="0 0 24 24" aria-hidden className="h-8 w-8 stroke-primary" fill="none" strokeWidth="2">
-          <path d="M12 5v14M5 12h14" strokeLinecap="round" />
-        </svg>
+    <figure className="metal-panel overflow-hidden rounded-sm border bg-card">
+      <div className="metal-grain flex aspect-video w-full flex-col items-center justify-center gap-3 border-b border-dashed px-4 text-center">
+        <ImagePlus aria-hidden className="h-8 w-8 text-primary/60" />
         <span className="font-heavy text-[11px] uppercase text-muted-foreground">Sæt dit billede ind her</span>
       </div>
       <figcaption className="p-5">
@@ -163,35 +164,35 @@ function Slot({ title, hint }: { title: string; hint: string }) {
 function Index() {
   return (
     <main className="min-h-screen overflow-hidden">
-      <header className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-6 py-5 md:px-12">
+      <header className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-6 py-4 md:px-12">
         <Logo />
-        <a
-          href="#spil"
-          className="rounded-full bg-primary shrink-0 px-4 py-2 font-heavy text-xs uppercase text-primary-foreground hover:opacity-90 sm:px-5 sm:text-sm"
-        >
-          Ønskeliste
-        </a>
+        <Button asChild className="hazard-button shrink-0 rounded-sm px-4 font-heavy text-xs uppercase sm:px-5 sm:text-sm">
+          <a href="#spil">Ønskeliste <ArrowUpRight /></a>
+        </Button>
       </header>
 
-      <section className="relative flex min-h-screen items-end">
+      <section className="outpost-hero relative flex items-center">
         <Backdrop />
-        <div className="relative z-10 w-full px-6 pb-16 md:px-12 md:pb-24">
-          <h1 className="font-heavy text-5xl uppercase leading-[0.9] tracking-tight sm:text-6xl md:text-8xl lg:text-9xl">
-            Byg<Dot /> Stop<Dot />
-            <br />
-            Overlev<Dot />
+        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center px-6 pb-12 pt-28 text-center md:pt-24">
+          <p className="field-label mb-2 text-xs uppercase text-primary">Tower defense / Extraction</p>
+          <h1 className="w-full max-w-[580px]">
+            <img src={logoAsset.url} alt="TD: Outpost Yellow" width={1152} height={768} className="w-full mix-blend-screen" fetchPriority="high" />
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+          <h2 className="mt-2 font-heavy text-3xl uppercase leading-tight sm:text-4xl">Byg<Dot /> Stop<Dot /> Overlev<Dot /></h2>
+          <p className="mt-4 max-w-xl text-base text-muted-foreground sm:text-lg">
             Den sidste outpost står alene mod de gule zombier. Overlev fem bølger, så helikopteren kan hente de
             overlevende ud.
           </p>
+          <Button asChild variant="outline" className="mt-7 rounded-sm border-primary/50 bg-background/70 font-heavy uppercase text-primary">
+            <a href="#spil">Ind i outposten <ArrowDown /></a>
+          </Button>
         </div>
       </section>
 
-      <div className="tiger h-6 w-full" aria-hidden />
+      <div className="tiger h-3 w-full border-y border-primary/50" aria-hidden />
 
-      <section id="spil" className="px-6 py-16 md:px-12 md:py-24">
-        <p className="font-heavy uppercase text-primary">Hvad handler spillet om?</p>
+      <section id="spil" className="field-section scroll-mt-6 px-6 py-16 md:px-12 md:py-24">
+        <p className="field-label uppercase text-primary">01 / Forsvar den sidste outpost</p>
         <h2 className="mt-3 max-w-4xl font-heavy text-3xl uppercase leading-tight sm:text-4xl md:text-6xl">
           Du styrer ikke en helt<Dot /> Du styrer forsvaret<Dot />
         </h2>
@@ -202,8 +203,8 @@ function Index() {
 
         <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {features.map((f) => (
-            <article key={f.n} className="group rounded-xl border bg-card p-6 transition hover:border-primary">
-              <span className="font-display text-3xl text-primary">{f.n}</span>
+            <article key={f.n} className="metal-panel group rounded-sm border bg-card p-6 transition hover:border-primary">
+              <div className="flex items-center justify-between"><f.icon aria-hidden className="h-8 w-8 text-primary" /><span className="field-label text-sm text-muted-foreground">{f.n}</span></div>
               <h3 className="mt-6 font-heavy text-xl uppercase">{f.t}</h3>
               <p className="mt-2 text-muted-foreground">{f.d}</p>
             </article>
@@ -211,14 +212,11 @@ function Index() {
         </div>
       </section>
 
-      <section className="px-6 py-16 md:px-12 md:py-24">
-        <p className="font-heavy uppercase text-primary">Fra outposten</p>
+      <section className="field-section border-t px-6 py-16 md:px-12 md:py-24">
+        <p className="field-label uppercase text-primary">02 / Fra outposten</p>
         <h2 className="mt-3 max-w-3xl font-heavy text-3xl uppercase leading-tight sm:text-4xl md:text-5xl">
-          Pladserne er klar<Dot />
+          Udsigt fra frontlinjen<Dot />
         </h2>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          Her kommer dine egne billeder fra spillet ind, når du har dem. Indtil videre er rammerne tomme.
-        </p>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {slots.map((s) => (
             <Slot key={s.t} title={s.t} hint={s.d} />
@@ -226,17 +224,15 @@ function Index() {
         </div>
       </section>
 
-      <section className="tiger relative px-6 py-16 md:px-12 md:py-24">
-        <div className="mx-auto max-w-3xl rounded-2xl bg-background p-6 text-center sm:p-10 md:p-14">
+      <section className="extraction-band relative border-y px-6 py-16 md:px-12 md:py-24">
+        <div className="relative mx-auto max-w-3xl text-center">
+          <p className="field-label mb-5 text-xs uppercase text-primary">Sidste ordre / Hold linjen</p>
           <p className="font-display text-7xl text-primary md:text-8xl">5</p>
           <h2 className="mt-2 font-heavy text-2xl uppercase sm:text-3xl md:text-5xl">Bølger til udtræk<Dot /></h2>
           <p className="mt-4 text-muted-foreground">Hold outposten i live. Vent på helikopteren.</p>
-          <a
-            href="#spil"
-            className="mt-8 inline-block rounded-full bg-primary px-8 py-4 font-heavy uppercase text-primary-foreground hover:opacity-90"
-          >
-            Følg udviklingen
-          </a>
+          <Button asChild size="lg" className="hazard-button mt-8 rounded-sm font-heavy uppercase">
+            <a href="#spil">Følg udviklingen <ArrowUpRight /></a>
+          </Button>
         </div>
       </section>
 
@@ -244,11 +240,11 @@ function Index() {
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">
             <Logo />
-            <span className="font-heavy text-sm text-muted-foreground">hold the line</span>
+            <span className="field-label text-xs uppercase text-muted-foreground">Stay. Build. Survive.</span>
           </div>
         </div>
         <p className="mt-8 text-[10px] leading-snug text-muted-foreground">
-          Yellow Outpost™ indeholder op til 100% gule zombier. Ingen overlevende blev efterladt under udviklingen.
+          TD: Outpost Yellow™ indeholder op til 100% gule zombier. Ingen overlevende blev efterladt under udviklingen.
           Bivirkninger kan omfatte forhøjet puls, pludselig trang til at bygge pigtråd og ukontrolleret råb efter
           luftangreb. Lad være med at drille horden.
         </p>
@@ -259,9 +255,8 @@ function Index() {
 
 function Logo() {
   return (
-    <span className="font-display text-base leading-none text-primary sm:text-xl">
-      YELLOW<br />
-      OUTPOST
-    </span>
+    <a href="#" aria-label="TD: Outpost Yellow – forsiden" className="block w-24 shrink-0 sm:w-32">
+      <img src={logoAsset.url} alt="TD: Outpost Yellow" width={1152} height={768} className="h-auto w-full mix-blend-screen" />
+    </a>
   );
 }

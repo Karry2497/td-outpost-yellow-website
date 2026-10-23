@@ -5,9 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Rubik Mono One", "Archivo Black", sans-serif;
+  --font-display: "Archivo Black", sans-serif;
   --font-heavy: "Archivo Black", sans-serif;
-  --font-sans: "Rubik", sans-serif;
+  --font-sans: "Barlow", sans-serif;
+  --font-stencil: "Barlow Condensed", sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -34,39 +35,44 @@
 }
 
 :root {
-  --radius: 0.75rem;
-  --background: oklch(0.16 0.008 230);
-  --foreground: oklch(0.94 0.003 90);
-  --card: oklch(0.21 0.01 230);
+  --radius: 0.25rem;
+  --background: oklch(0.13 0.003 100);
+  --foreground: oklch(0.94 0.016 90);
+  --card: oklch(0.21 0.005 100);
   --card-foreground: oklch(0.94 0.003 90);
   --popover: oklch(0.21 0.01 230);
   --popover-foreground: oklch(0.94 0.003 90);
-  --primary: oklch(0.84 0.17 88);
+  --primary: oklch(0.86 0.18 91);
   --primary-foreground: oklch(0.16 0.008 230);
-  --secondary: oklch(0.27 0.012 230);
+  --secondary: oklch(0.27 0.005 100);
   --secondary-foreground: oklch(0.94 0.003 90);
   --muted: oklch(0.25 0.01 230);
-  --muted-foreground: oklch(0.65 0.01 230);
+  --muted-foreground: oklch(0.73 0.008 90);
   --accent: oklch(0.84 0.17 88);
   --accent-foreground: oklch(0.16 0.008 230);
   --destructive: oklch(0.6 0.22 27);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.32 0.012 230);
+  --border: oklch(0.34 0.006 100);
   --input: oklch(0.32 0.012 230);
   --ring: oklch(0.84 0.17 88);
   --glow: radial-gradient(ellipse at 70% 20%, oklch(0.95 0.02 200 / 0.35), transparent 55%);
+  --metal-highlight: oklch(0.56 0.008 90 / 0.12);
+  --metal-shadow: oklch(0.05 0 0 / 0.5);
+  --rivet: oklch(0.48 0.008 90);
+  --signal: oklch(0.61 0.18 33);
 }
 
 @layer base {
   * { border-color: var(--color-border); }
   body { background-color: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); }
+  html { scroll-behavior: smooth; }
+  * { letter-spacing: 0; }
 }
 
 @utility tiger {
   background-color: var(--primary);
   background-image:
-    repeating-linear-gradient(115deg, transparent 0 38px, var(--background) 38px 58px, transparent 58px 96px),
-    repeating-linear-gradient(65deg, transparent 0 70px, var(--background) 70px 82px, transparent 82px 150px);
+    repeating-linear-gradient(125deg, transparent 0 24px, var(--background) 24px 48px);
 }
 
 /* --- Baggrund: ren CSS/SVG. Ingen billeder fra spillet. --- */
@@ -74,9 +80,7 @@
 @utility city-night {
   background-color: var(--background);
   background-image:
-    radial-gradient(ellipse 70% 45% at 50% 104%, oklch(0.84 0.17 88 / 0.3), transparent 72%),
-    radial-gradient(circle 280px at 84% 14%, oklch(0.84 0.17 88 / 0.18), transparent 70%),
-    linear-gradient(to bottom, oklch(0.11 0.012 235) 0%, oklch(0.16 0.012 230) 58%, oklch(0.21 0.014 230) 100%);
+    linear-gradient(to bottom, var(--background), var(--card));
 }
 
 @utility street-grid {
@@ -119,8 +123,24 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .street-grid,
   .haze-pulse {
     animation: none;
   }
 }
+
+.outpost-hero { min-height: min(850px, 92svh); }
+.field-section { max-width: 1440px; margin-inline: auto; }
+.field-label { font-family: var(--font-stencil); font-weight: 700; }
+.metal-grain {
+  background-image: repeating-linear-gradient(0deg, transparent 0 3px, var(--metal-highlight) 3px 4px), repeating-linear-gradient(93deg, transparent 0 83px, var(--metal-shadow) 83px 84px);
+}
+.metal-panel { position: relative; background-image: linear-gradient(135deg, var(--metal-highlight), transparent 50%); box-shadow: inset 0 1px 0 var(--metal-highlight), 0 4px 0 var(--metal-shadow); }
+.metal-panel::before, .metal-panel::after { content: ""; position: absolute; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--rivet); box-shadow: 0 1px 1px var(--metal-shadow); }
+.metal-panel::before { left: 9px; }
+.metal-panel::after { right: 9px; }
+.hazard-button { border-bottom: 3px solid var(--signal); box-shadow: 2px 3px 0 var(--metal-shadow); }
+.extraction-band { background-color: var(--card); background-image: repeating-linear-gradient(125deg, transparent 0 38px, var(--metal-shadow) 38px 40px); }
+.extraction-band::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 7px; background: repeating-linear-gradient(125deg, var(--primary) 0 24px, var(--background) 24px 48px); }
+@media (max-width: 639px) { .outpost-hero { min-height: 720px; } }
