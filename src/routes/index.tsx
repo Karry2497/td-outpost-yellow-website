@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowDown, ArrowUpRight, Crosshair, Shield, Wrench, Plane, ImagePlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoAsset from "@/assets/outpost-yellow-logo.png.asset.json";
+import heroAsset from "@/assets/outpost-billboard.webp.asset.json";
+import heroMobileAsset from "@/assets/outpost-billboard-mobile.webp.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,102 +39,6 @@ const features = [
   { n: "03", icon: Wrench, t: "Reparér & forstærk", d: "Lap outposten sammen og forstærk murene mellem bølgerne." },
   { n: "04", icon: Plane, t: "Luftangreb", d: "Når presset bliver for stort: kald et luftangreb ned over vejene." },
 ];
-
-/* ---------------------------------------------------------------------------
-   Baggrund: tegnet i ren CSS og inline SVG – ingen billeder fra spillet.
-   --------------------------------------------------------------------------- */
-
-type Building = { x: number; w: number; h: number; turret?: boolean };
-
-const FAR: Building[] = [
-  { x: 0, w: 110, h: 180 },
-  { x: 120, w: 90, h: 140 },
-  { x: 220, w: 130, h: 210 },
-  { x: 360, w: 80, h: 160 },
-  { x: 450, w: 140, h: 240 },
-  { x: 600, w: 100, h: 150 },
-  { x: 710, w: 120, h: 200 },
-  { x: 840, w: 90, h: 170 },
-  { x: 940, w: 150, h: 250 },
-  { x: 1100, w: 100, h: 160 },
-  { x: 1210, w: 120, h: 210 },
-  { x: 1340, w: 100, h: 180 },
-];
-
-const NEAR: Building[] = [
-  { x: -20, w: 160, h: 280 },
-  { x: 190, w: 120, h: 220, turret: true },
-  { x: 340, w: 180, h: 320, turret: true },
-  { x: 550, w: 110, h: 240 },
-  { x: 690, w: 160, h: 300, turret: true },
-  { x: 880, w: 130, h: 230 },
-  { x: 1040, w: 180, h: 310, turret: true },
-  { x: 1250, w: 190, h: 260 },
-];
-
-const BASE = 400;
-
-function windows(b: Building) {
-  const cols = Math.max(0, Math.floor((b.w - 24) / 26));
-  const rows = Math.max(0, Math.floor((b.h - 34) / 34));
-  const out: { key: string; x: number; y: number }[] = [];
-  for (let c = 0; c < cols; c++) {
-    for (let r = 0; r < rows; r++) {
-      if ((b.x + c * 7 + r * 11) % 6 < 2) {
-        out.push({ key: `${b.x}-${c}-${r}`, x: b.x + 14 + c * 26, y: BASE - b.h + 20 + r * 34 });
-      }
-    }
-  }
-  return out;
-}
-
-function Skyline() {
-  return (
-    <svg
-      viewBox="0 0 1440 400"
-      preserveAspectRatio="none"
-      aria-hidden
-      className="absolute inset-x-0 bottom-0 h-[42vh] min-h-[200px] w-full"
-    >
-      <g className="fill-secondary" opacity="0.6">
-        {FAR.map((b) => (
-          <rect key={`far-${b.x}`} x={b.x} y={BASE - b.h} width={b.w} height={b.h} />
-        ))}
-      </g>
-      <g className="fill-card">
-        {NEAR.map((b) => (
-          <g key={`near-${b.x}`}>
-            <rect x={b.x} y={BASE - b.h} width={b.w} height={b.h} />
-            {b.turret ? (
-              <>
-                <rect className="fill-primary" x={b.x + b.w / 2 - 6} y={BASE - b.h - 26} width={12} height={26} />
-                <circle className="fill-primary" cx={b.x + b.w / 2} cy={BASE - b.h - 32} r={5} />
-              </>
-            ) : null}
-            {windows(b).map((w) => (
-              <rect key={w.key} className="fill-primary" opacity="0.5" x={w.x} y={w.y} width={10} height={14} />
-            ))}
-          </g>
-        ))}
-      </g>
-    </svg>
-  );
-}
-
-function Backdrop() {
-  return (
-    <div className="absolute inset-0 overflow-hidden" aria-hidden>
-      <div className="city-night absolute inset-0" />
-      <div className="metal-grain absolute inset-0" />
-      <div className="tiger absolute inset-y-0 right-0 w-3 opacity-50 md:w-5" />
-      <div className="street-grid absolute inset-x-0 bottom-0 h-1/2" />
-      <div className="halftone absolute inset-0 opacity-30" />
-      <Skyline />
-      <div className="scanlines absolute inset-0 opacity-30" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/55 to-background/10" />
-    </div>
-  );
-}
 
 /* ---------------------------------------------------------------------------
    Billedpladser: tomme rammer, du fylder med dine egne billeder senere.
@@ -172,12 +78,19 @@ function Index() {
       </header>
 
       <section className="outpost-hero relative flex items-center">
-        <Backdrop />
         <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center px-6 pb-12 pt-28 text-center md:pt-24">
           <p className="field-label mb-2 text-xs uppercase text-primary">Tower defense / Extraction</p>
-          <h1 className="w-full max-w-[580px]">
-            <img src={logoAsset.url} alt="TD: Outpost Yellow" width={1152} height={768} className="w-full mix-blend-screen" fetchPriority="high" />
-          </h1>
+          <h1 className="sr-only">TD: Outpost Yellow</h1>
+          <img
+            src={heroAsset.url}
+            srcSet={`${heroMobileAsset.url} 640w, ${heroAsset.url} 1152w`}
+            sizes="(max-width: 639px) calc(100vw - 48px), 680px"
+            alt="Gult outpost-skilt med teksten SET. BLAST. REPEAT. og SPRAY & PRAY."
+            width={1152}
+            height={768}
+            className="h-auto w-full max-w-[680px]"
+            fetchPriority="high"
+          />
           <h2 className="mt-2 font-heavy text-3xl uppercase leading-tight sm:text-4xl">Byg<Dot /> Stop<Dot /> Overlev<Dot /></h2>
           <p className="mt-4 max-w-xl text-base text-muted-foreground sm:text-lg">
             Den sidste outpost står alene mod de gule zombier. Overlev fem bølger, så helikopteren kan hente de
