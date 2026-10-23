@@ -133,6 +133,7 @@
 }
 
 .outpost-hero { min-height: min(850px, 92svh); background-color: var(--hero-background); }
+.hero-fade { background: linear-gradient(to bottom, oklch(0 0 0 / 0.35) 0%, transparent 25%, transparent 50%, oklch(0 0 0 / 0.85) 82%, var(--hero-background) 100%); }
 .field-section { max-width: 1440px; margin-inline: auto; }
 .field-label { font-family: var(--font-stencil); font-weight: 700; }
 .metal-grain {

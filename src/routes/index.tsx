@@ -1,9 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowDown, ArrowUpRight, Crosshair, Shield, Wrench, Plane, ImagePlus } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Crosshair, Shield, Wrench, Plane } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoAsset from "@/assets/outpost-yellow-logo.png.asset.json";
 import heroAsset from "@/assets/outpost-billboard.webp.asset.json";
 import heroMobileAsset from "@/assets/outpost-billboard-mobile.webp.asset.json";
+import screen1 from "@/assets/screen-image-4.webp.asset.json";
+import screen2 from "@/assets/screen-image-5.webp.asset.json";
+import screen3 from "@/assets/screen-image-6.webp.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -47,18 +50,15 @@ const features = [
    --------------------------------------------------------------------------- */
 
 const slots = [
-  { t: "Outposten fra luften", d: "Overblik over de tre veje ind i byen." },
-  { t: "Tårn på taget", d: "Placering af tårn, mens horden nærmer sig." },
-  { t: "Bølge 5", d: "Helikopteren er på vej ind over outposten." },
+  { t: "Outposten fra luften", d: "Overblik over de tre veje ind i byen.", img: screen1.url },
+  { t: "Tårn på taget", d: "Placering af tårn, mens horden nærmer sig.", img: screen2.url },
+  { t: "Bølge 5", d: "Helikopteren er på vej ind over outposten.", img: screen3.url },
 ];
 
-function Slot({ title, hint }: { title: string; hint: string }) {
+function Slot({ title, hint, img }: { title: string; hint: string; img: string }) {
   return (
     <figure className="metal-panel overflow-hidden rounded-sm border bg-card">
-      <div className="metal-grain flex aspect-video w-full flex-col items-center justify-center gap-3 border-b border-dashed px-4 text-center">
-        <ImagePlus aria-hidden className="h-8 w-8 text-primary/60" />
-        <span className="font-heavy text-[11px] uppercase text-muted-foreground">Sæt dit billede ind her</span>
-      </div>
+      <img src={img} alt={title} loading="lazy" width={1280} height={720} className="aspect-video w-full border-b object-cover" />
       <figcaption className="p-5">
         <h3 className="font-heavy text-base uppercase">{title}</h3>
         <p className="mt-1 text-sm text-muted-foreground">{hint}</p>
@@ -77,22 +77,22 @@ function Index() {
         </Button>
       </header>
 
-      <section className="outpost-hero relative flex items-center">
-        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center px-6 pb-12 pt-28 text-center md:pt-24">
+      <section className="outpost-hero relative flex items-end overflow-hidden">
+        <img
+          src={heroAsset.url}
+          srcSet={`${heroMobileAsset.url} 640w, ${heroAsset.url} 1152w`}
+          sizes="100vw"
+          alt="Gult outpost-skilt med teksten SET. BLAST. REPEAT. og SPRAY & PRAY."
+          width={1152}
+          height={768}
+          className="absolute inset-0 h-full w-full object-cover object-center"
+          fetchPriority="high"
+        />
+        <div aria-hidden className="hero-fade absolute inset-0" />
+        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center px-6 pb-14 pt-40 text-center">
           <p className="field-label mb-2 text-xs uppercase text-primary">Tower defense / Extraction</p>
           <h1 className="sr-only">TD: Outpost Yellow</h1>
-          <img
-            src={heroAsset.url}
-            srcSet={`${heroMobileAsset.url} 640w, ${heroAsset.url} 1152w`}
-            sizes="(max-width: 639px) calc(100vw - 48px), 680px"
-            alt="Gult outpost-skilt med teksten SET. BLAST. REPEAT. og SPRAY & PRAY."
-            width={1152}
-            height={768}
-            className="h-auto w-full max-w-[680px]"
-            fetchPriority="high"
-          />
-          <h2 className="mt-2 font-heavy text-3xl uppercase leading-tight sm:text-4xl">Byg<Dot /> Stop<Dot /> Overlev<Dot /></h2>
-          <p className="mt-4 max-w-xl text-base text-muted-foreground sm:text-lg">
+          <p className="max-w-xl text-base text-foreground/85 sm:text-lg">
             Den sidste outpost står alene mod de gule zombier. Overlev fem bølger, så helikopteren kan hente de
             overlevende ud.
           </p>
@@ -107,7 +107,7 @@ function Index() {
       <section id="spil" className="field-section scroll-mt-6 px-6 py-16 md:px-12 md:py-24">
         <p className="field-label uppercase text-primary">01 / Forsvar den sidste outpost</p>
         <h2 className="mt-3 max-w-4xl font-heavy text-3xl uppercase leading-tight sm:text-4xl md:text-6xl">
-          Du styrer ikke en helt<Dot /> Du styrer forsvaret<Dot />
+          No brains<Dot /> No problem<Dot />
         </h2>
         <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
           Fra et fast kamera højt over byen ser du slagmarken og bygger dit forsvar, mens horden nærmer sig gennem
@@ -132,7 +132,7 @@ function Index() {
         </h2>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {slots.map((s) => (
-            <Slot key={s.t} title={s.t} hint={s.d} />
+            <Slot key={s.t} title={s.t} hint={s.d} img={s.img} />
           ))}
         </div>
       </section>
