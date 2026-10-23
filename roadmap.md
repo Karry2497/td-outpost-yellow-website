@@ -3,3 +3,4 @@
 - [x] Responsiv på mobil og desktop
 - [x] CSS/SVG-baggrund (ingen spil-billeder) + tomme billedpladser
 - [ ] Karry indsætter egne billeder fra spillet i pladserne
+- [x] Udskift logo og tilpas siden til det vedhæftede industrielle moodboard
