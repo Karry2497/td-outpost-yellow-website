@@ -32,11 +32,13 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-hero-background: var(--hero-background);
 }
 
 :root {
   --radius: 0.25rem;
   --background: oklch(0.13 0.003 100);
+  --hero-background: oklch(0 0 0);
   --foreground: oklch(0.94 0.016 90);
   --card: oklch(0.21 0.005 100);
   --card-foreground: oklch(0.94 0.003 90);
@@ -130,7 +132,7 @@
   }
 }
 
-.outpost-hero { min-height: min(850px, 92svh); }
+.outpost-hero { min-height: min(850px, 92svh); background-color: var(--hero-background); }
 .field-section { max-width: 1440px; margin-inline: auto; }
 .field-label { font-family: var(--font-stencil); font-weight: 700; }
 .metal-grain {
